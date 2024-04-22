@@ -350,3 +350,169 @@ int main() {
 ```
 
 </details>
+
+<details id=12 open>
+<summary><h2>Herencia</h2></summary>
+
+- Permite que una clase adquiera propiedades y comportamientos de otra clase existente.
+
+</details>
+
+<details id=13 open>
+<summary><h2>Protected</h2></summary>
+
+- En programación, la palabra clave "protected" se utiliza para declarar una variable como 
+  protegida. Si una clase hereda de otra, tendrá acceso a las variables/funciones protegidas
+  de la super-clase, de lo contrario, no podrá acceder a ellas1. Cuando definimos un atributo 
+  o método como protected, solo podrán tener acceso las clases y objetos que pertenezcan al 
+  mismo paquete, sean objetos de la misma clase o a las subclases y sus respectivos objetos.
+
+</details>
+
+<details id=14 open>
+<summary><h2>Polimorfismo</h2></summary>
+
+- El polimorfismo es la capacidad de manejar distintas clases heredadas de una clase base de la
+  misma forma. Este ejemplo simplificado muestra un posible resultado a implementar polimorfismo:
+
+```c++
+// Tenemos tres punteros con formas heredadas de Shape
+Shape *shape1 = new Circle;
+Shape *shape2 = new Rectangle;
+Shape *shape3 = new Oval;
+
+// Una función que toma una Shape de cualquier tipo derivado
+void draw_shape(Shape* shape_ptr)
+{
+shape_ptr->draw();
+}
+```
+
+- La función draw_shape utiliza el polimorfismo de clases para llamar al método draw() que tiene
+  cualquier Shape, independientemente que su implementación sea distinta en cada caso. Gracias a
+  los punteros y la gestión por referencia esto es posible.
+
+</details>
+
+<details id=14 open>
+<summary><h2>Virtual y Overrider</h2></summary>
+
+## Virtual
+- Una función virtual es una función miembro que se declara dentro de una clase base y es redefinida
+  (anulada) por una clase derivada. Cuando se hace referencia a un objeto de clase derivada mediante
+  un puntero o una referencia a la clase base, se puede llamar a una función virtual para ese objeto
+  y ejecutar la versión de la función de la clase derivada:
+  
+  - Las funciones virtuales garantizan que se llame a la función correcta para un objeto, 
+    independientemente del tipo de referencia (o puntero) utilizado para la llamada a la función.
+  - Se utilizan principalmente para lograr el polimorfismo en tiempo de ejecución. 
+  - Las funciones se declaran con una palabra clave virtual en la clase base. 
+  - La resolución de la llamada a la función se realiza en tiempo de ejecución.
+  
+***Reglas para funciones virtuales***
+
+1. Las funciones virtuales no pueden ser estáticas. Una función virtual puede ser una función amiga
+   de otra clase. 
+2. Se debe acceder a las funciones virtuales utilizando el puntero o la referencia del tipo de clase
+   base para lograr el polimorfismo en tiempo de ejecución. 
+3. El prototipo de funciones virtuales debe ser el mismo en la base, así como en la clase derivada. 
+4. Siempre se definen en la clase base y se anulan en una clase derivada. No es obligatorio que la
+   clase derivada anule (o redefina la función virtual), en ese caso se utiliza la versión de la base.
+   Una clase puede tener un destructor virtual, pero no puede tener un constructor virtual. Para 
+   construir un objeto, un constructor necesita el tipo exacto del objeto que a crea y no se puede
+   tener un puntero a un constructor (el objeto aún no existe).
+
+
+```c++
+#include <iostream>
+
+class Shape
+{
+public:
+    Shape() = default;
+    Shape(std::string description) 
+        : description(description){};
+
+    // Función virtual a implementar en clase derivada
+    virtual void draw() const
+    {
+        std::cout << "Dibujando " << description << "\n";
+    }
+
+protected:
+    std::string description{""};
+};
+
+class Circle : public Shape
+{
+public:
+    Circle() = default;
+    Circle(std::string description, double radius)
+        : Shape(description), radius(radius){};
+
+    // Implementación de la función virtual
+    virtual void draw() const
+    {
+        std::cout << "Dibujando " << description
+                  << " con radio " << radius << "\n";
+    }
+
+protected:
+    double radius{};
+};
+
+main()
+{
+    Shape shape("Forma");
+    Circle circulo("Circulo", 4.5);
+
+    shape.draw();   // Dibujando Forma
+    circulo.draw(); // Dibujando Circulo con radio 4.5
+
+    return 0;
+}
+```
+Ahora que tenemos un método virtual en la clase derivada podemos crear una función que simplemente
+reciba un puntero o referencia de una instancia de Shape o sus clases derivadas y ejecutar su 
+método draw() sin preocuparnos por su tipo:
+
+```c++
+// Funciones que llaman a una base o sus derivadas
+void draw_shape_puntero(Shape *s)
+{
+s->draw();
+}
+
+void draw_shape_referencia(Shape &s)
+{
+s.draw();
+}
+
+main()
+{
+Shape shape("Forma");
+Circle circulo("Circulo", 4.5);
+
+draw_shape_puntero(&shape);
+draw_shape_referencia(shape);
+draw_shape_puntero(&circulo);
+draw_shape_referencia(circulo);
+
+return 0;
+}
+```
+##  Overrider
+Puede ser que mientras estamos definiendo los métodos de la clase base en las derivadas tengamos un
+despiste y en lugar de referirnos a un método por su nombre lo llamemos distinto, por ejemplo en
+lugar de draw pongamos por error draW. Esto generará un método nuevo que no substituirá al original.
+
+Para evitar esta situación, podemos establecer el especificador override como una buena práctica en
+todos los métodos de las derivadas que estén implementados sobre un método virtual, de esa manera el
+propio editor o compilador nos avisará de que tengamos cuidado, pues ese método no se encuentra en la
+clase base:
+
+![img.png](img/img.png)
+
+***Link de material util:***
+https://docs.hektorprofe.net/cpp/
+</details>

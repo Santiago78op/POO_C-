@@ -55,6 +55,36 @@ build CMakeFiles/EDD_1.dir/main.cpp.obj: CXX_COMPILER__EDD_1_unscanned_Debug C$:
   OBJECT_DIR = CMakeFiles\EDD_1.dir
   OBJECT_FILE_DIR = CMakeFiles\EDD_1.dir
 
+build CMakeFiles/EDD_1.dir/pokemon.cpp.obj: CXX_COMPILER__EDD_1_unscanned_Debug C$:/Users/72358/CLionProjects/EDD_1/pokemon.cpp || cmake_object_order_depends_target_EDD_1
+  DEP_FILE = CMakeFiles\EDD_1.dir\pokemon.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\EDD_1.dir
+  OBJECT_FILE_DIR = CMakeFiles\EDD_1.dir
+
+build CMakeFiles/EDD_1.dir/atleta.cpp.obj: CXX_COMPILER__EDD_1_unscanned_Debug C$:/Users/72358/CLionProjects/EDD_1/atleta.cpp || cmake_object_order_depends_target_EDD_1
+  DEP_FILE = CMakeFiles\EDD_1.dir\atleta.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\EDD_1.dir
+  OBJECT_FILE_DIR = CMakeFiles\EDD_1.dir
+
+build CMakeFiles/EDD_1.dir/waterPokemon.cpp.obj: CXX_COMPILER__EDD_1_unscanned_Debug C$:/Users/72358/CLionProjects/EDD_1/waterPokemon.cpp || cmake_object_order_depends_target_EDD_1
+  DEP_FILE = CMakeFiles\EDD_1.dir\waterPokemon.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\EDD_1.dir
+  OBJECT_FILE_DIR = CMakeFiles\EDD_1.dir
+
+build CMakeFiles/EDD_1.dir/firePokemon.cpp.obj: CXX_COMPILER__EDD_1_unscanned_Debug C$:/Users/72358/CLionProjects/EDD_1/cmake-build-debug/firePokemon.cpp || cmake_object_order_depends_target_EDD_1
+  DEP_FILE = CMakeFiles\EDD_1.dir\firePokemon.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\EDD_1.dir
+  OBJECT_FILE_DIR = CMakeFiles\EDD_1.dir
+
+build CMakeFiles/EDD_1.dir/pekemonEarth.cpp.obj: CXX_COMPILER__EDD_1_unscanned_Debug C$:/Users/72358/CLionProjects/EDD_1/pekemonEarth.cpp || cmake_object_order_depends_target_EDD_1
+  DEP_FILE = CMakeFiles\EDD_1.dir\pekemonEarth.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\EDD_1.dir
+  OBJECT_FILE_DIR = CMakeFiles\EDD_1.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target EDD_1
@@ -63,7 +93,7 @@ build CMakeFiles/EDD_1.dir/main.cpp.obj: CXX_COMPILER__EDD_1_unscanned_Debug C$:
 #############################################
 # Link the executable EDD_1.exe
 
-build EDD_1.exe: CXX_EXECUTABLE_LINKER__EDD_1_Debug CMakeFiles/EDD_1.dir/main.cpp.obj
+build EDD_1.exe: CXX_EXECUTABLE_LINKER__EDD_1_Debug CMakeFiles/EDD_1.dir/main.cpp.obj CMakeFiles/EDD_1.dir/pokemon.cpp.obj CMakeFiles/EDD_1.dir/atleta.cpp.obj CMakeFiles/EDD_1.dir/waterPokemon.cpp.obj CMakeFiles/EDD_1.dir/firePokemon.cpp.obj CMakeFiles/EDD_1.dir/pekemonEarth.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\EDD_1.dir

@@ -1,77 +1,67 @@
-#include <iostream>
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
-using namespace std;
-
-class atleta {
-
-private:
-    float telefono;
-
-private:
-    // atributos
-    int energia;
-    int velocidad;
-    char nombre[15];
-
-    // constructor por defecto
-public:
-    atleta(){
-        energia   = 100;
-        velocidad = 0;
-        strcpy_s(nombre, "Julian");
-    };
-
-    // constructor personalizado
-    atleta(int e, int v, char n[15]){
-        energia = e;
-        velocidad = v;
-        strcpy_s(nombre, n);
-    };
-
-    // destructor
-    ~atleta(){ cout << "Limpiando Memoria"; };
-
-    // metodos
-    void aumentoVelocidad(){
-      velocidad++;
-      energia--;
-    };
-
-    // metodo para devolver un atributo encapsulamiento
-    // metodos set and get
-    int getVelocidad() { return velocidad; };
-    int getEnergia() { return energia; };
-    char* getNombre() { return nombre; }
-
-    void setVelocidad( int valocidad ) {
-        velocidad = 36;
-    };
-
-    void setEnergia( int energia ){
-      energia = 50;
-    };
-
-    void setNombre( char n[15] ){ strcpy_s(nombre, n);  }
-
-    void todosLosAtributos(){
-      cout << "Nombre:    " << nombre;
-      cout << "Energia:   " << energia;
-      cout << "Valocidad: " << velocidad;
-    };
+class athlete {
+    virtual void upSpeed() {
+        speed++;
+        power--;
+    }
 };
 
-int main() {
-    char aux[15];
-    // Creamos un nuevo objeto altleta
-    strcpy_s(aux, "U, Bolt");
-    atleta Bolt(80,20,aux);
+class footballPlayer :public athlete {
+    void upSpeed() override { speed += 3; power--; }
+};
 
-    //Creamos otro objeto atleta
-    strcpy_s(aux, "M, Phell");
-    atleta* Michael = new atleta(30,15, aux);
-    Michael -> todosLosAtributos();
+class swimmer : public athlete {    void upSpeed() { speed += 2; power--; }
+};
 
-    return 0;
+class cycler : public athlete {
+    void upSpeed() { speed += 7; power--; }
+};
+
+class runner : public athlete {
+    void upSpeed() override { speed += 4; power--; }
+};
+
+class triathlete : public cycler,
+                   public swimmer,
+                   public runner {
+
+    int personalMarathonRecord;
+    char currentActivity[15] = "";
+
+public:
+
+    triathlete(int pmr) {
+        personalMarathonRecord = pmr;
+    }
+
+    void setCurrentActivity(char ca[15]) { strcpy_s(currentActivity, ca); }
+    char* getCurrentActivity() { return currentActivity; }
+};
+
+void loadAthlete(athlete* ath) {
+    ath->setPower(100);
+}
+
+void main(){
+
+    Pele.upSpeed();
+    loadAthlete(&Pele);
+    Pele.showAllAthleteAttributes();
+
+    Usain.upSpeed();
+    loadAthlete(&Usain);
+    Usain.showAllAthleteAttributes();
+
+    Indurain.upSpeed();
+    loadAthlete(&Indurain);
+    Indurain.showAllAthleteAttributes();
+
+    Phelps.upSpeed();
+    loadAthlete(&Phelps);
+    Phelps.showAllAthleteAttributes();
+
+    strcpy_s(aux, "SuperMan");
+    triathlete SuperMan(2);
+    SuperMan.swimmer::setSpeed(50);
+    SuperMan.runner::showAllAthleteAttributes();
+
 }
